@@ -1,0 +1,21 @@
+.register_button{
+    color: #A91D3A;
+    border-radius: 20px;
+    border-color: #A91D3A;
+    background-color: aliceblue;
+    border-style: double;
+    height: 30%;
+    width: 70%;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;   
+    margin-top: 20px;
+    
+}
+
+.register_button:hover{
+    background-color: #A91D3A;
+    color: aliceblue;
+    border-color: aliceblue;
+
+    height: 40%;
+}

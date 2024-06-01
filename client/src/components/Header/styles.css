@@ -1,0 +1,15 @@
+header{
+    background-color: #F6EEC9;
+    display: flex;
+    align-items: center;
+    min-width: 100%;
+    padding: 1rem;
+    height: 3rem;
+}
+
+header span{
+    color: #A91D3A;
+    font-family: "MedievalSharp", cursive;
+    font-size: 2rem;
+
+}
