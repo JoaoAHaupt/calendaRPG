@@ -1,0 +1,65 @@
+#root {
+    width: 100%;;
+    
+    text-align: center;
+  }
+  .entry_div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 40%;
+    border-radius: 20px;
+    background-image: url('https://www.creativefabrica.com/wp-content/uploads/2022/03/14/Wood-Texture-Graphics-27181890-1.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+  }
+  
+  .lepo{
+    height: 90vh;
+  }
+  
+  .entry_div span{
+    font-family: "MedievalSharp", cursive;
+    font-size: 7rem;
+  }
+  
+  .description{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .description div{
+    width: 30%;
+    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .description_p{
+    width: 60%;
+    margin-right: 20px;
+    background-color: rgb(67, 18, 18);
+  }
+  
+  .align_div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    padding-top: 3rem;
+  }
+  
+  .dice_div{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    padding: 6rem;
+  }
