@@ -10,11 +10,9 @@
     flex-direction: column;
     height: 100%;
     width: 40%;
-    border-radius: 20px;
-    background-image: url('https://www.creativefabrica.com/wp-content/uploads/2022/03/14/Wood-Texture-Graphics-27181890-1.jpg');
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-position: center; 
+    border-radius: 10px;
+    background-color: #3a0a5e7a;
+    
   }
   
   .lepo{
@@ -24,13 +22,29 @@
   .entry_div span{
     font-family: "MedievalSharp", cursive;
     font-size: 7rem;
+    color: #b8860b;
+
+    animation: span_animation 3s infinite alternate ease-in-out;
+  }
+
+  @keyframes span_animation {
+    0% {
+      filter: drop-shadow(0 0 10px #ff44003f );
+    }
+    100% {
+      filter: drop-shadow(0 0 10px #FF4500 ) ;
+      color: #ffb700;
+
+    }
   }
   
   .description{
-    width: 70%;
+    width: 60%;
+    height: 20rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
   }
   
   

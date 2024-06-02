@@ -1,16 +1,16 @@
 import Header from "../../components/Header"
 
-function LoginPage() {
-
-
+function AboutUsPage() {
 
   return (
     <>
       <Header/>
-      
+      <div>
+        
+      </div>
         
     </>
   )
 }
 
-export default LoginPage
+export default AboutUsPage

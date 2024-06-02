@@ -1,15 +1,23 @@
 import React from 'react';
-import './styles.css'
+import { Link, useNavigate } from 'react-router-dom';
+import './styles.css';
 
 export const Header = () => {
+    const navigate = useNavigate(); 
+
+    const handleLoginClick = () => {
+        navigate('/login'); 
+    }
+
     return (
         <header>
-            <div className=''>
-                <span><b><u>CalendaRPG</u></b></span>
-                <a href="">About us</a>
-                <a href="">Why?</a>
+            <div className='header-container'>
+                <Link to={"/"}><span><b><u>CalendaRPG</u></b></span></Link>
+                <Link to="/why">Why?</Link>
+                <Link to="/about us">About us</Link>
+                
             </div>
-            <button>Login</button>
+            <button onClick={handleLoginClick}>Login</button> 
         </header>
     );
 }

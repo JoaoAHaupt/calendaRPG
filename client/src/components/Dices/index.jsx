@@ -4,18 +4,21 @@ export const Dices = ({ image, height }) => {
     let speed;
     let blur_value;
     let area = Math.floor(Math.random() * 700);
-
-    if (height <= 50) {
-        blur_value = height / 30;
+    if (height <= 40) {
+        blur_value = height / 10;
+        speed = 2.5;
+     }
+    else if (height <= 50) {
+        blur_value = height / 20;
         speed = 2;
     } else if (height <= 100) {
-        blur_value = height / 100;
+        blur_value = height / 70;
         speed = 1.5;
     }else if (height <= 130) {
-            blur_value = height / 150;
+            blur_value = height / 120;
             speed = 1.25;
     } else{
-        blur_value = height / 250;
+        blur_value = height / 10000;
         speed = 1;
     }
     
@@ -33,7 +36,8 @@ export const Dices = ({ image, height }) => {
                     .dice-${height} {
                         animation: moveUpDown ${speed}s infinite alternate ease-in-out;
                         filter: blur(${blur_value}px);
-
+                        z-index: -1;
+                        
                     }
 
                     @keyframes moveUpDown {
@@ -41,7 +45,7 @@ export const Dices = ({ image, height }) => {
                             transform: translateY(0);
                         }
                         100% {
-                            transform: translateY(-10px);
+                            transform: translateY(-90px);
                             
                         }
                     }

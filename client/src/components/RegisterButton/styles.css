@@ -1,21 +1,24 @@
 .register_button{
-    color: #A91D3A;
     border-radius: 20px;
-    border-color: #A91D3A;
     background-color: aliceblue;
+    color: rgb(184, 184, 184);
     border-style: double;
     height: 30%;
     width: 70%;
     cursor: pointer;
     transition: all 100ms ease-in-out;   
     margin-top: 20px;
+    font-family: "MedievalSharp", cursive;
+    font-size: 2rem;
+    transition: all 1000ms ease-in-out;
     
 }
 
 .register_button:hover{
     background-color: #A91D3A;
-    color: aliceblue;
+    color: black;
     border-color: aliceblue;
+    background-color: aliceblue;
 
-    height: 40%;
+    
 }

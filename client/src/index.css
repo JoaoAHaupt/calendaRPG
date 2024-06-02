@@ -5,13 +5,19 @@
   
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #000000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*
+  background-image: url(https://images.squarespace-cdn.com/content/v1/541d868ce4b0c158abe9c5f3/1526725274978-DAMM0RTP39E4C3N0UOUY/RPG_Medieval_Kingdom_Kit_46.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover; 
+  */
+  
 }
+
 
 
 body {
@@ -20,4 +26,6 @@ body {
   min-width: 100%;
   max-width: 100%;
   min-height: 100vh;
+  
 }
+
