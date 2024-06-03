@@ -18,12 +18,11 @@
   .lepo{
     height: 90vh;
   }
-  
+
   .entry_div span{
     font-family: "MedievalSharp", cursive;
     font-size: 7rem;
     color: #b8860b;
-
     animation: span_animation 3s infinite alternate ease-in-out;
   }
 
@@ -39,30 +38,19 @@
   }
   
   .description{
+    font-size: 20px;
     width: 60%;
     height: 20rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    font-family: 'Yrsa', cursive;
+
   }
   
   
-  .description div{
-    width: 30%;
-    padding: 1rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .description_p{
-    width: 60%;
-    margin-right: 20px;
-    background-color: rgb(67, 18, 18);
-  }
-  
+
   .align_div{
     display: flex;
     align-items: center;

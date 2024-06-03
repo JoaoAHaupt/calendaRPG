@@ -1,9 +1,12 @@
 import React from 'react';
 import './styles.css'
+import { Link } from 'react-router-dom';
 
 export const RegisterButton = () => {
     return (
-        <button className='register_button'><b>Register</b></button>
+        <Link to="/register">
+            <button className='register_button'>Register!</button>
+        </Link>
     );
 }
 

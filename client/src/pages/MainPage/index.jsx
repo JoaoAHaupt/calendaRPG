@@ -19,12 +19,13 @@ function MainPage() {
 
       
       <div className="align_div">
+
         <div className='dice_div'>
           <Dices image={D4} height={40}/>
           <Dices image={D100} height={50}/>
           <Dices image={D12} height={130}/>
 
-          <Dices image={D20} height={200}/>
+          <Dices image={D20} height={110}/>
           <Dices image={D8} height={80}/>
         </div>
 
@@ -37,7 +38,7 @@ function MainPage() {
                 CalendaRPG is your gateway to epic RPG adventures, seamlessly blending scheduling with storytelling. Dive into fantasy realms, organize game sessions, and craft unforgettable tales with ease. Join us and embark on a journey where every day is a new chapter in your epic saga
              
              
-                <p>Would you like to join us in this adventure?</p>
+                <h3>Would you like to join us in this adventure?</h3>
                 <RegisterButton />
             
             </div>

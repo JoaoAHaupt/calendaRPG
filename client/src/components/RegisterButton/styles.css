@@ -1,24 +1,24 @@
 .register_button{
-    border-radius: 20px;
     background-color: aliceblue;
     color: rgb(184, 184, 184);
-    border-style: double;
-    height: 30%;
-    width: 70%;
+    border: none;
+    height: 60px;
+    width: 20rem;
     cursor: pointer;
     transition: all 100ms ease-in-out;   
-    margin-top: 20px;
+    
     font-family: "MedievalSharp", cursive;
     font-size: 2rem;
-    transition: all 1000ms ease-in-out;
+    transition: all 500ms ease-in-out;
+    
     
 }
 
 .register_button:hover{
-    background-color: #A91D3A;
-    color: black;
+    font-size: 2.1rem;
+    color: #f0af0c;
+    padding: 0px 10px 10px 25px;
     border-color: aliceblue;
-    background-color: aliceblue;
-
+    box-shadow: -10px 10px 0 #f0af0c78;
     
 }
