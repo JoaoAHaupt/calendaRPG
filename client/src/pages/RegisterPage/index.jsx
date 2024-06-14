@@ -126,7 +126,9 @@ function RegisterPage() {
           <p>{message}</p>
           
           <VisibilityButton visibility={visibility} setVisibility={setVisibility}/>          
-          <button onClick={handleSubmit} className='submit_button'>Let's roll!</button>
+          <div className='button_div'>
+            <button onClick={handleSubmit} className='submit_button'>Let's roll!</button>
+          </div>
 
           <p>Already have an account? <Link to="/login">Login</Link></p>
         </div>

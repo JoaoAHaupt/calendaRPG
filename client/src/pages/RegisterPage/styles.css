@@ -59,10 +59,24 @@ div {
     height: 2rem;
     cursor: pointer;
     border-radius: 20px;
-    background: rgb(217, 132, 132);
-    border-color: brown;
+    background: rgba(208, 217, 132, 0.153);
+    border-color: rgb(73, 7, 93);
     border-style: double;
     width: 50%;
+    transition: all 300ms ease-in-out;
+    font-family: "MedievalSharp", cursive;
+    font-size: 1rem;
+
+}
+
+.submit_button:hover{
+    cursor: pointer;
+    border-radius: 20px;
+    background: rgba(208, 217, 132, 0.153);
+    border-color: #b8860b;
+    color: #b8860b;
+    text-shadow: 1px 0px 6px #b8860b;
+
 }
 
 .dice_div{
@@ -71,3 +85,11 @@ div {
     width: 30%;
     padding: 6rem;
   }
+
+.button_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 99%;
+    padding: 1rem;
+}

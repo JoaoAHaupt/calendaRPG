@@ -83,7 +83,7 @@ function LoginPage() {
           <Dices image={D8} height={80}/>
         </div>
           
-        <div className='register_screen'>
+        <div className='login_screen'>
           <h1>Login</h1>
           <div className='input_div'>
             <span>Email</span>
@@ -107,7 +107,11 @@ function LoginPage() {
           <p>{message}</p>
           
           <VisibilityButton visibility={visibility} setVisibility={setVisibility}/>          
-          <button onClick={handleSubmit} className='submit_button'>Let's roll!</button>
+          <div className='button_div'>
+            <button onClick={handleSubmit} className='submit_button'>
+              Let's roll!
+            </button>
+          </div>
 
           <p>Don't have an account? <Link to="/register">Register now!</Link></p>
         </div>

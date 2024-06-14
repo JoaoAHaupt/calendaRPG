@@ -5,9 +5,9 @@
     justify-content: center;
 }
 
-.register_screen{
+.login_screen{
     background-color: #3a0a5e7a;
-    height: 80%;
+    height: 60%;
     width: 40rem;
     padding: 1rem;
     display: flex;
@@ -15,7 +15,8 @@
     font-family: "MedievalSharp", cursive;
 }
 
-.register_screen span{
+
+.login_screen span{
     font-size: 1rem;
 }
 
@@ -23,7 +24,7 @@ div {
     font-family: "MedievalSharp", cursive;
 }
 
-.register_screen input{
+.login_screen input{
     margin: 1rem;
 }
 
@@ -71,3 +72,34 @@ div {
     width: 30%;
     padding: 6rem;
   }
+
+.button_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.submit_button{
+    height: 2rem;
+    cursor: pointer;
+    border-radius: 20px;
+    background: rgba(208, 217, 132, 0.153);
+    border-color: rgb(73, 7, 93);
+    border-style: double;
+    width: 50%;
+    transition: all 300ms ease-in-out;
+    font-family: "MedievalSharp", cursive;
+    font-size: 1rem;
+
+}
+
+.submit_button:hover{
+    cursor: pointer;
+    border-radius: 20px;
+    background: rgba(208, 217, 132, 0.153);
+    border-color: #b8860b;
+    color: #b8860b;
+    text-shadow: 1px 0px 6px #b8860b;
+
+}
