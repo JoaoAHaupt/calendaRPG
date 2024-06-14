@@ -1,0 +1,94 @@
+import React, { useState } from 'react';
+import './styles.css';
+
+function Calendar() {
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+
+  const handlePreviousMonth = () => {
+    const previousMonth = new Date(currentDate);
+    previousMonth.setMonth(previousMonth.getMonth() - 1);
+    setCurrentDate(previousMonth);
+  };
+
+  const handleNextMonth = () => {
+    const nextMonth = new Date(currentDate);
+    nextMonth.setMonth(nextMonth.getMonth() + 1);
+    setCurrentDate(nextMonth);
+  };
+
+  const formattedMonth = currentDate.toLocaleString('en-US', { month: 'long' });
+  const year = currentDate.getFullYear();
+
+  const daysInMonth = new Date(year, currentDate.getMonth() + 1, 0).getDate();
+
+  const startDay = new Date(year, currentDate.getMonth(), 1).getDay();
+
+  const daysOfMonth = Array.from({ length: daysInMonth }, (_, index) => index + 1);
+
+  const days = [...Array(startDay).fill(null), ...daysOfMonth];
+
+  const weeks = [];
+  let week = [];
+  days.forEach((day, index) => {
+    if (index > 0 && index % 7 === 0) {
+      weeks.push(week);
+      week = [];
+    }
+    week.push(day);
+  });
+  weeks.push(week); 
+
+  return (
+    <div className="calendar-container">
+      <div className='calendar'>
+        <header>
+          <button onClick={handlePreviousMonth}>Previous</button>
+          <div>
+            <h1>{formattedMonth}</h1>
+            <h2>{year}</h2>
+          </div>
+          <button onClick={handleNextMonth}>Next</button>
+        </header>
+        <table className='calendar-content'>
+        <thead>
+          <tr>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+          </tr>
+        </thead>
+        <tbody>
+          {weeks.map((week, weekIndex) => (
+            <tr key={weekIndex}>
+              {week.map((day, dayIndex) => {
+                const cellDate = new Date(year, currentDate.getMonth(), day);
+                const cellDateString = cellDate.toISOString().split('T')[0];
+                
+                return (
+                  <td
+                    key={dayIndex}
+                    style={{
+                      backgroundColor: cellDateString === new Date().toISOString().split('T')[0] ? '#b8860b' : '#5700b353'
+                    }}
+                  >
+                    {day}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      </div>
+      
+    </div>
+    
+  );
+}
+
+export default Calendar;

@@ -22,18 +22,6 @@ function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("")
   
-  const fetchAPI = async () => {
-    try {
-      const response = await axios.get('http://192.168.15.10:8000/');
-      setMessage(response.data.users);
-    } catch (error) {
-      console.error("Error fetching data from API", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchAPI();
-  }, []);
 
   
   const handleUsernameChange = (e) => {
