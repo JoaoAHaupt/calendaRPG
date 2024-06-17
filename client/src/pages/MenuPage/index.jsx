@@ -19,7 +19,11 @@ function MenuPage() {
     <div className='menu-page'>
       <Calendar />
       <div className='action-bar'>
-        ads
+        Rolls
+        <br></br>
+        Add campaing 
+        Create campaing 
+
       </div>
     </div>
   );
