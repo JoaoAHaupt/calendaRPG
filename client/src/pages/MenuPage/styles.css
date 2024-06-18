@@ -15,4 +15,38 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+}
+
+
+.action-bar img{
+  height: 3rem;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  margin-top: 0.5rem;
+
+}
+
+.action-bar button{
+  width: 100%;
+  border: none;
+  background: none;
+  transition: all 300ms ease-in-out;
+  height: 3.5rem;
+  font-family: "MedievalSharp", cursive;
+  margin: 1rem;
+
+
+}
+
+.action-bar button:hover{
+  filter: drop-shadow(0px 0px 5px white);
+  rotate: 20px;
+}
+
+.action-bar button:hover img{
+  transform: rotate(390deg); 
+  height: 3.5rem;
+  margin-top: 0;
+
 }

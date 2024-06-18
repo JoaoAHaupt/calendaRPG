@@ -88,7 +88,7 @@ function LoginPage() {
           <div className='input_div'>
             <span>Email</span>
             <input
-              type="email"
+              type="{email}"
               value={email}
               onChange={handleEmailChange}
               placeholder="Ex: dark@mail.com"

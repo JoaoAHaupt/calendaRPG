@@ -1,28 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.css';
 import Calendar from '../Calendar';
+import d20Menu from '../../assets/images/d20Menu.png'
+import RollDices from '../../components/RollDices';
+import AddCampaing from '../../components/AddCampaing';
+import CreateCampaing from '../../components/CreateCampaing';
 
 function MenuPage() {
-  useEffect(() => {
-    fetch('/hello')
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return res.json();
-      })
-      .then(response => console.log(response))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
+  const [page, setPage] = useState(null)
+
 
   return (
     <div className='menu-page'>
-      <Calendar />
+      
+      <Calendar/>
+      {page}
       <div className='action-bar'>
-        Rolls
-        <br></br>
-        Add campaing 
-        Create campaing 
+        <button id='dice_menu_button' onClick={() => setPage(<RollDices />)}>
+          <u>Let's roll!</u>
+          <img src={d20Menu} alt='d20 menu' />
+        </button>
+        <button id='dice_menu_button' onClick={() => setPage(<AddCampaing />)}>
+          <u>Add campaing</u>
+        </button>
+
+        
+        <button id='dice_menu_button'onClick={() => setPage(<CreateCampaing />)}>
+          <u>Create campaing</u>
+        </button>
+        
+
 
       </div>
     </div>

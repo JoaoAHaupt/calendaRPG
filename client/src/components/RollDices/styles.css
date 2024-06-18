@@ -1,0 +1,104 @@
+#dices_container{
+    background-color: #5700b353;
+    height: 70%;
+    width: 30%;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+#dices_container img{
+    margin: 0.2rem;
+    height: 5rem;
+    filter: grayscale(1);
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+
+}
+
+#dices_container img:hover{
+    filter: grayscale(0);
+}
+
+#selected_dice{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80%;
+}
+
+#roll_input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#roll_input input{
+    width: 4rem;
+    height: 3rem;
+}
+
+
+#dices_container button{
+    background: none;
+    border: none;
+    
+}
+
+#selected_dice img{
+    height: 12rem;
+    filter: none;
+    
+}
+
+.spinning img {
+    animation: spin 0.2s linear;
+}
+
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#historic_conteiner{
+    max-height: 5rem;
+    height: 5rem;
+
+}
+
+#historic_dices-1{
+    background-color: rgba(123, 0, 255, 0.388);
+    margin: 0.5rem;
+    width: 6rem;
+    border-radius: 7px;
+    padding: 0.75rem;
+
+}
+
+#historic_dices-2{
+    background-color: #7608eb4e;
+    margin: 0.5rem;
+    width: 6rem;
+    border-radius: 7px;
+    padding: 0.5rem;
+
+
+}
+
+#historic_dices-3{
+    background-color: #4f0a984b;
+
+    margin: 0.5rem;
+    width: 6rem;
+    border-radius: 7px;
+    padding: 0.25rem;
+
+}
+
+
+
