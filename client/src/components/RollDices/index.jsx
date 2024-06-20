@@ -12,8 +12,10 @@ const RollDices = () => {
     const [selectedDice, setSelectedDice] = useState(null);
     const [isSpinning, setIsSpinning] = useState(false);
     const [rollValue, setRollValue] = useState(0); 
+    const [dicesQuantity, setDicesQuantity] = useState(1); 
     const [bonus, setBonus] = useState(0);
-    const [rollDiceNow, setRollDiceNow] = useState(null);
+    const [allRolled, setAllRolled] = useState([])
+    const [rollDiceNow, setRollDiceNow] = useState("_");
     const [rolled, setRolled] = useState([]);
 
     const handleClick = (dice, value) => {
@@ -25,12 +27,15 @@ const RollDices = () => {
     const rollDice = () => {
         if (rollValue > 0 && !isSpinning) {
             setIsSpinning(true);
-            if(!bonus){
-                setBonus(0);
+            let arr = [];
+            for (let i = 0; i < dicesQuantity; i++) {
+                let result = Math.floor(Math.random() * rollValue) + 1;
+                arr.push(result);
             }
-            const result = Math.floor(Math.random() * rollValue) + 1 + bonus;
-            setRollDiceNow(result);
-            setRolled([result, ...rolled.slice(0,4)]); 
+            setAllRolled(arr)
+            let total = arr.reduce((acc, val) => acc + val, 0);
+            setRollDiceNow(total+bonus);
+            setRolled([total, ...rolled.slice(0, 4)]); 
             setTimeout(() => setIsSpinning(false), 1000);
         }
     };
@@ -63,23 +68,22 @@ const RollDices = () => {
             {selectedDice && (
                 <div id='selected_dice'>
                     <div id='roll_input'>
-                        <h1>
-                            <input type="number" /> D {rollValue} 
-                            <input type="number" onChange={(ev) => setBonus(parseInt(ev.target.value))} /> 
-                        </h1>
-
+                        <input  type="number" value={dicesQuantity} onChange={(ev) => setDicesQuantity(parseInt(ev.target.value) || 1)} />
+                        <h1>D{rollValue}</h1>
+                        <input  type="number" value={bonus} onChange={(ev) => setBonus(parseInt(ev.target.value) || 0)} />
                     </div>
                     
                     <button className={isSpinning ? 'spinning' : ''} onClick={rollDice}>
                         <img src={selectedDice} alt="Selected Dice" />
                     </button>
                     <h1>{rollDiceNow}</h1>
+                    <h2>All Rolls: {allRolled.join(" + ")} Bonus: {bonus}</h2>
                     <div id='historic_container'>
-                    {rolled.slice(1, 4).map((roll, index) => (
-                        <div key={index} id={`historic_dices-${index + 1}`}>
-                            <h2>{roll}</h2>
-                        </div>
-                    ))}
+                        {rolled.slice(1, 4).map((roll, index) => (
+                            <div key={index} id={`historic_dices-${index + 1}`}>
+                                <h2>{roll}</h2>
+                            </div>
+                        ))}
                     </div>
                 </div>
             )}

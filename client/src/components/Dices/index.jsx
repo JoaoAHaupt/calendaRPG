@@ -47,6 +47,7 @@ const Dices = ({ image, height }) => {
                         align-items: center;
                         justify-content: center;
                         height: ${area}px;
+                        z-index: -1;
                     }
                 `}
             </style>
