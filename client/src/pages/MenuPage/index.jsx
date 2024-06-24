@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
 import Calendar from '../Calendar';
-import d20Menu from '../../assets/images/d20Menu.png'
+import d20Menu from '../../assets/images/d20Menu.png';
 import RollDices from '../../components/RollDices';
 import AddCampaing from '../../components/AddCampaing';
 import CreateCampaing from '../../components/CreateCampaing';
 
 function MenuPage() {
-  const [page, setPage] = useState(null)
+  const [page, setPage] = useState(null);
 
 
   return (
     <div className='menu-page'>
-      
-      <Calendar/>
+      <Calendar />
       {page}
       <div className='action-bar'>
         <button id='dice_menu_button' onClick={() => setPage(<RollDices />)}>
@@ -23,14 +22,9 @@ function MenuPage() {
         <button id='dice_menu_button' onClick={() => setPage(<AddCampaing />)}>
           <u>Add campaing</u>
         </button>
-
-        
-        <button id='dice_menu_button'onClick={() => setPage(<CreateCampaing />)}>
+        <button id='dice_menu_button' onClick={() => setPage(<CreateCampaing />)}>
           <u>Create campaing</u>
         </button>
-        
-
-
       </div>
     </div>
   );

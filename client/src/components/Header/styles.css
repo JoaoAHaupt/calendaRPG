@@ -3,7 +3,7 @@ header{
 
     display: flex;
     align-items: center;
-    min-width: 100%;
+    max-width: 100%;
     padding: 1rem;
     height: 3rem;
     box-shadow: rgba(75, 0, 130, 0.6) 0px 5px, rgba(75, 0, 130, 0.5) 0px 10px, rgba(75, 0, 130, 0.4) 0px 15px, rgba(75, 0, 130, 0.3) 0px 20px, rgba(75, 0, 130, 0.2) 0px 25px;
@@ -34,7 +34,6 @@ header span:hover {
 
 header a {
     margin-left: 1em;
-    color: #b4ff7d;
     font-family: "MedievalSharp", cursive;
     font-size: 1rem;
 

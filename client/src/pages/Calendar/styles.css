@@ -4,15 +4,16 @@
   font-family: "MedievalSharp", cursive;
 
 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-header {
+.header_calendar {
   display: flex;
-  justify-content: space-between;
+  justify-content:space-evenly;
   align-items: center; 
-  width: 100%;
+  max-width: 100%;
+
 }
+
 
 
 
@@ -23,6 +24,7 @@ header {
   justify-content: center;
   flex-direction: column;
   text-align: center; 
+  margin: 5rem;
 }
 
 h1, h2 {
@@ -49,3 +51,11 @@ h1, h2 {
   font-size: 2rem;
 }
 
+.button_calendar{
+  background-color: #5700b300;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  margin: 1rem 0 1rem 0;
+
+}

@@ -6,15 +6,16 @@ const CreateCampaing = () => {
 
 
     return (
-        <div id='dices_container'>
+        <div id='create_campaing_conteiner'>
          
-           <h1>Add campaing</h1>
-           name<input type="text" />
-           description
+           <h1>Create campaing</h1>
+           Name<input type="text" />
+           Description
            <input type="text" />
-           <input type="date" />
-           session description
-           last sessions description
+           Hex Color
+           <input type="color" />
+           <button>Create</button>
+
 
            
         </div>

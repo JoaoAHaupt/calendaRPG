@@ -10,9 +10,9 @@ const AddCampaing = () => {
          
          
          <h1>Add campaing</h1>
-          <button>Public</button>
-          <h2>Capaing</h2>
+          Campaing code
           <input type="text" />
+          <button>adssad</button>
       
            
         </div>

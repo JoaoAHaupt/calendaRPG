@@ -1,0 +1,11 @@
+#create_campaing_conteiner{
+    background-color: #5700b353;
+    height: 40%;
+    width: 30%;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

@@ -1,9 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
+import axios from 'axios';
 
 function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [campaigns, setCampaigns] = useState([]);
+  const [sessions, setSessions] = useState([]);
 
+  useEffect(() => {
+    axios.get('http://localhost:5000/hello')
+      .then(response => {
+        const data = response.data;
+
+        setCampaigns(data.campaigns);
+
+        const allSessions = data.campaigns.flatMap(campaign => campaign.events);
+        setSessions(allSessions);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   const handlePreviousMonth = () => {
     const previousMonth = new Date(currentDate);
@@ -37,57 +54,58 @@ function Calendar() {
     }
     week.push(day);
   });
-  weeks.push(week); 
+  weeks.push(week);
 
   return (
     <div className="calendar-container">
       <div className='calendar'>
-        <header>
-          <button onClick={handlePreviousMonth}>Previous</button>
-          <div>
+        <header className='header_calendar'>
+          <button className='button_calendar' onClick={handlePreviousMonth}>↢</button>
+          <div style={{ minWidth: '20rem' }}>
             <h1>{formattedMonth}</h1>
             <h2>{year}</h2>
           </div>
-          <button onClick={handleNextMonth}>Next</button>
+          <button className='button_calendar' onClick={handleNextMonth}>↣</button>
         </header>
         <table className='calendar-content'>
-        <thead>
-          <tr>
-            <th>Sunday</th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-          </tr>
-        </thead>
-        <tbody>
-          {weeks.map((week, weekIndex) => (
-            <tr key={weekIndex}>
-              {week.map((day, dayIndex) => {
-                const cellDate = new Date(year, currentDate.getMonth(), day);
-                const cellDateString = cellDate.toISOString().split('T')[0];
-                
-                return (
-                  <td
-                    key={dayIndex}
-                    style={{
-                      backgroundColor: cellDateString === new Date().toISOString().split('T')[0] ? '#b8860b' : '#5700b353'
-                    }}
-                  >
-                    {day}
-                  </td>
-                );
-              })}
+          <thead>
+            <tr>
+              <th>Sunday</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {weeks.map((week, weekIndex) => (
+              <tr key={weekIndex}>
+                {week.map((day, dayIndex) => {
+                  const cellDate = new Date(year, currentDate.getMonth(), day);
+                  const cellDateString = cellDate.toISOString().split('T')[0];
+
+                  // Verifica se a data é uma sessão
+                  const isSessionDay = sessions.some(session => session.date === cellDateString);
+
+                  return (
+                    <td
+                      key={dayIndex}
+                      style={{
+                        backgroundColor: isSessionDay ? '#b8860b' : (cellDateString === new Date().toISOString().split('T')[0] ? '#b8860b' : '#5700b353')
+                      }}
+                    >
+                      {day}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      
     </div>
-    
   );
 }
 
