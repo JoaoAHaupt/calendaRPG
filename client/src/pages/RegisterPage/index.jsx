@@ -22,8 +22,6 @@ function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("")
   
-
-  
   const handleUsernameChange = (e) => {
     let newUsername = e.target.value;
     if (newUsername[newUsername.length - 1] === " ") {
@@ -32,24 +30,14 @@ function RegisterPage() {
     setUsername(newUsername);
   };
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
-
   const handleSubmit = () => {
+    setMessage("")
+
     if (password !== confirmPassword) {
       setMessage("Passwords aren't the same")
+      return
     }
-
+    
     console.log("Username:", username);
     console.log("Email:", email);
     console.log("Password:", password);
@@ -87,7 +75,7 @@ function RegisterPage() {
             <input
               type="email"
               value={email}
-              onChange={handleEmailChange}
+              onChange={(ev) => setEmail(ev.target.value)}
               placeholder="Ex: dark@mail.com"
             />
           </div>
@@ -96,7 +84,7 @@ function RegisterPage() {
             <input
               type={visibility}
               value={password}
-              onChange={handlePasswordChange}
+              onChange={(ev) => setPassword(ev.target.value)}
               placeholder="Ex: prince0fD4rkness"
 
             />
@@ -106,7 +94,7 @@ function RegisterPage() {
             <input
               type={visibility}
               value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
+              onChange={(ev) => setConfirmPassword(ev.target.value)}
               placeholder="Ex: prince0fD4rkness"
 
             />

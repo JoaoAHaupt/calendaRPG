@@ -19,11 +19,20 @@ function MenuPage() {
           <u>Let's roll!</u>
           <img src={d20Menu} alt='d20 menu' />
         </button>
+        <button id='dice_menu_button' onClick={() => setPage(null)}>
+          <u>Currency</u>
+        </button>
         <button id='dice_menu_button' onClick={() => setPage(<AddCampaing />)}>
           <u>Add campaing</u>
         </button>
         <button id='dice_menu_button' onClick={() => setPage(<CreateCampaing />)}>
           <u>Create campaing</u>
+        </button>
+        <button id='dice_menu_button' onClick={() => setPage(null)}>
+          <u>Settings</u>
+        </button>
+        <button id='dice_menu_button' onClick={() => setPage(null)}>
+          <u>Logout</u>
         </button>
       </div>
     </div>

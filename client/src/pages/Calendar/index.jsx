@@ -6,21 +6,25 @@ function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [campaigns, setCampaigns] = useState([]);
   const [sessions, setSessions] = useState([]);
+  const userId = 1
 
-  useEffect(() => {
+ /*useEffect(() => {
     axios.get('http://localhost:5000/hello')
       .then(response => {
         const data = response.data;
 
-        setCampaigns(data.campaigns);
-
-        const allSessions = data.campaigns.flatMap(campaign => campaign.events);
-        setSessions(allSessions);
+        const userCampaigns = data.userCampaings.filter(uc => uc.idUser === userId);
+        const userCampaignIds = userCampaigns.map(uc => uc.idCampaing);
+        const userEvents = data.campaigns
+          .filter(campaign => userCampaignIds.includes(campaign.id))
+          .flatMap(campaign => campaign.events);
+        
+        setSessions(userEvents) ;
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }, []);*/
 
   const handlePreviousMonth = () => {
     const previousMonth = new Date(currentDate);
@@ -86,7 +90,6 @@ function Calendar() {
                   const cellDate = new Date(year, currentDate.getMonth(), day);
                   const cellDateString = cellDate.toISOString().split('T')[0];
 
-                  // Verifica se a data é uma sessão
                   const isSessionDay = sessions.some(session => session.date === cellDateString);
 
                   return (
