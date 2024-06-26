@@ -5,25 +5,25 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RegisterPage from './pages/RegisterPage';
 import MenuPage from './pages/MenuPage';
 import AboutUs from './pages/AboutUsPage';
+import { AuthProvider } from './assets/util/AuthContext';
+
 function App() {
-
   return (
-    <Router>
-      <div className='App'>
-        <div className='content'>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/about us" element={<AboutUs />} />
-            <Route path="/register" element={<RegisterPage/>} />
-            <Route path="/menu" element={<MenuPage/>} />
-            <Route path="/menu" element={<MenuPage/>} />
-
-
-          </Routes>
+    <AuthProvider>
+      <Router>
+        <div className='App'>
+          <div className='content'>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/about-us" element={<AboutUs />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/menu" element={<MenuPage />} />
+            </Routes>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 }
 

@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request
+import datetime
+from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from models.session import Session
@@ -7,7 +8,30 @@ from models.user import User
 from database import db_session
 
 app = Flask(__name__)
-cors = CORS(app, origins="*")
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+@app.route('/set_cookies', methods=['POST'])
+def set_cookies():
+    data = request.json
+    
+    username = data.get('username')
+    email = data.get('email')
+
+
+    resp = make_response(jsonify({'message': 'Cookies set successfully'}))
+
+    resp.set_cookie('username', username)
+    resp.set_cookie('email', email)
+            
+    return resp, 200
+
+@app.route('/get_cookies', methods=['GET'])
+def get_cookies():
+    username = request.cookies.get('username')
+    email = request.cookies.get('email')
+
+    return jsonify({'username': username, 'email': email})
+
 
 @app.route('/register', methods=['POST'])
 def add_user():
@@ -21,7 +45,6 @@ def add_user():
 
     if not username or not email or not password:
         return jsonify({'error': 'Missing required fields'}), 400
-
 
     new_user = User(username=username, email=email, password=password)
     db_session.add(new_user)
@@ -44,9 +67,9 @@ def add_campaign():
         return jsonify({'error': 'Missing name'}), 400
 
     new_campaign = Campaign(name=name, 
-                        description=description, 
-                        hex_color=hex_color, 
-                        user_id=user_id)
+                            description=description, 
+                            hex_color=hex_color, 
+                            user_id=user_id)
     db_session.add(new_campaign)
     db_session.commit()
 
@@ -63,9 +86,9 @@ def add_session():
     campaign_id = data.get('campaign_id')
 
     if not date or not campaign_id:
-        return jsonify({'error': 'Missing name or campaign_id'}), 400
+        return jsonify({'error': 'Missing date or campaign_id'}), 400
 
-    new_session = Session(date=data,description=description, campaign_id=campaign_id)
+    new_session = Session(date=date, description=description, campaign_id=campaign_id)
     db_session.add(new_session)
     db_session.commit()
 
@@ -73,7 +96,6 @@ def add_session():
 
 @app.route('/', methods=['GET'])
 def get_campaigns():
-
     campaigns = Campaign.query.all()
     
     return jsonify([{
@@ -84,9 +106,18 @@ def get_campaigns():
         'user_id': campaign.user_id
     } for campaign in campaigns])
 
+@app.route('/users', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    
+    return jsonify([{
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'password': user.password
+    } for user in users])
 
 if __name__ == '__main__':
     from database import init_db
-    
     init_db()
     app.run(debug=True)
