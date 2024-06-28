@@ -45,24 +45,26 @@ function RegisterPage() {
         email,
         password
       }, { withCredentials: true });
-
-      try {
-        const setCookiesResponse = await axios.post('http://localhost:5000/set_cookies', {
-          username,
-          email
-        }, { withCredentials: true });
-
-        if (setCookiesResponse.status === 200) {
-          setMessage("REGISTERED!");
-        }
-      } catch (error) {
-        console.error("Error setting cookies:", error);
+  
+      if (response.status === 201) {
+        setMessage("Registration successful!");
+      } else {
+        setMessage("Unexpected response from server.");
       }
-
+  
     } catch (error) {
-      setMessage(error.response.data.error || "Failed to register");
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        setMessage(error.response.data.error || "Failed to register");
+      } else if (error.request) {
+        // Request was made but no response was received
+        setMessage("Failed to register: No response from server.");
+      } else {
+        // Other errors
+        setMessage("Failed to register: " + error.message);
+      }
     }
-};
+  };
   
 
   return (

@@ -20,7 +20,36 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("")
   
-
+  const handleSubmitLogin = async () => {
+    setMessage("");
+    try {
+      const loginResponse = await axios.post('http://localhost:5000/get_user', {
+        email,
+        password
+      });
+      
+      const { id, username } = loginResponse.data;
+  
+      const setCookiesResponse = await axios.post('http://localhost:5000/set_cookies', {
+        id,
+        email,
+        username
+      }, { withCredentials: true });
+  
+      if (setCookiesResponse.status === 200) {
+        setMessage('Login successful!');      
+      }
+  
+    } catch (error) {
+      if (error.response) {
+        setMessage(`Login failed: email or password incorrect`);
+      } else if (error.request) {
+        setMessage('Login failed: No response from server.');
+      }
+    }
+  };
+  
+  
 
   return (
     <div>
@@ -62,7 +91,7 @@ function LoginPage() {
           
           <VisibilityButton visibility={visibility} setVisibility={setVisibility}/>          
           <div className='button_div'>
-            <button onClick={handleSubmit} className='submit_button'>
+            <button  className='submit_button' onClick={handleSubmitLogin}>
               Let's roll!
             </button>
           </div>

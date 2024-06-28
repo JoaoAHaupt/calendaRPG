@@ -17,6 +17,7 @@ const CreateCampaing = () => {
                 dm_id
             });
             console.log('Campaign created:', response.data); 
+            
         } catch (error) {
             console.error('Failed to create campaign:', error);
         }
@@ -27,7 +28,7 @@ const CreateCampaing = () => {
     }
 
     return (
-        <div id='create_campaing_container'>
+        <div id='create_campaign_conteiner'>
             <h1>Create campaign</h1>
             <label>Name:</label>
             <input type="text" value={name} onChange={(ev) => setName(ev.target.value)} />

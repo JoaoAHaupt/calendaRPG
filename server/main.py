@@ -12,18 +12,17 @@ CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
 
 @app.route('/set_cookies', methods=['POST'])
 def set_cookies():
-
-    
-   
     data = request.json
     
     username = data.get('username')
+    id = str(data.get('id'))
     email = data.get('email')
     
     
     resp = make_response(jsonify({'message': 'Cookies set successfully'}))
-    resp.set_cookie('username', username)
-    resp.set_cookie('email', email)
+    resp.set_cookie('id', id, max_age=7200)
+    resp.set_cookie('email', email,max_age=7200)
+    resp.set_cookie('username', username, max_age=7200)
             
     return resp, 200
 
@@ -122,6 +121,25 @@ def get_users():
         'password': user.password
     } for user in users])
 
+@app.route('/get_user', methods=['POST'])
+def get_user():
+    data = request.get_json()
+    
+    email = data.get('email')
+    password = data.get('password')
+    
+    if not email or not password:
+        return jsonify({'error': 'No email or password provided'}), 400
+
+    user = User.query.filter_by(email=email, password=password).first()
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+
+    return jsonify({
+        'id': user.id,
+        'email': user.email,
+        'username': user.username
+    }), 200
 if __name__ == '__main__':
     from database import init_db
     init_db()
