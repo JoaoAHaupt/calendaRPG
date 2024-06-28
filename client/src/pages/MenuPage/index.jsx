@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';  // Importe o Axios
+import axios from 'axios';  
 
 import { AuthContext } from '../../assets/util/AuthContext';
 import './styles.css';
@@ -10,30 +10,31 @@ import AddCampaing from '../../components/AddCampaing';
 import CreateCampaing from '../../components/CreateCampaing';
 
 function MenuPage() {
-  const { loged, user } = useContext(AuthContext);
+  const { loged, user, setUser } = useContext(AuthContext);
   const [page, setPage] = useState(null);
+  const [lepo, setLepo] = useState(null)
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:5000/get_cookies');
         const userData = response.data;
-
-        // Aqui você pode fazer algo com os dados recebidos, como definir no estado
-        console.log(userData); // Exemplo: console.log para verificar os dados recebidos
+        setLepo(userData)
+        console.log(lepo)
 
       } catch (error) {
         console.error('Failed to fetch user data:', error);
       }
     };
 
-    fetchData(); // Chama a função fetchData ao montar o componente
+    fetchData(); 
 
-  }, []); // O array vazio [] indica que o efeito useEffect só deve rodar uma vez, ao montar o componente
+  }, []); 
 
   return (
     <>
-      {user ? (
+      {lepo ? (
         <div className='menu-page'>
           <Calendar />
           {page}
@@ -57,6 +58,8 @@ function MenuPage() {
             <button id='dice_menu_button' onClick={() => setPage(null)}>
               <u>Logout</u>
             </button>
+            <p>Username: {lepo.username}</p>
+
           </div>
         </div>
       ) : (

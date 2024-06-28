@@ -8,30 +8,35 @@ from models.user import User
 from database import db_session
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
 
 @app.route('/set_cookies', methods=['POST'])
 def set_cookies():
+
+    
+   
     data = request.json
     
     username = data.get('username')
     email = data.get('email')
-
-
+    
+    
     resp = make_response(jsonify({'message': 'Cookies set successfully'}))
-
     resp.set_cookie('username', username)
     resp.set_cookie('email', email)
             
     return resp, 200
+
 
 @app.route('/get_cookies', methods=['GET'])
 def get_cookies():
     username = request.cookies.get('username')
     email = request.cookies.get('email')
 
-    return jsonify({'username': username, 'email': email})
+    print(f"Username cookie: {username}")
+    print(f"Email cookie: {email}")
 
+    return jsonify({'username': username, 'email': email})
 
 @app.route('/register', methods=['POST'])
 def add_user():
@@ -61,7 +66,7 @@ def add_campaign():
     name = data.get('name')
     description = data.get('description')
     hex_color = data.get('hex_color')
-    user_id = data.get('user_id')
+    dm_id = data.get('dm_id')
 
     if not name:
         return jsonify({'error': 'Missing name'}), 400
@@ -69,7 +74,7 @@ def add_campaign():
     new_campaign = Campaign(name=name, 
                             description=description, 
                             hex_color=hex_color, 
-                            user_id=user_id)
+                            dm_id=dm_id)
     db_session.add(new_campaign)
     db_session.commit()
 
@@ -103,7 +108,7 @@ def get_campaigns():
         'name': campaign.name,
         'description': campaign.description,
         'hex_color': campaign.hex_color,
-        'user_id': campaign.user_id
+        'dm_id': campaign.dm_id
     } for campaign in campaigns])
 
 @app.route('/users', methods=['GET'])

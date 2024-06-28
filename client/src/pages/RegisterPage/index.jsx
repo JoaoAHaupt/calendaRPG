@@ -31,7 +31,7 @@ function RegisterPage() {
     setUsername(newUsername);
   };
 
-const handleSubmit = async () => {
+  const handleSubmit = async () => {
     setMessage("");
   
     if (password !== confirmPassword) {
@@ -44,27 +44,25 @@ const handleSubmit = async () => {
         username,
         email,
         password
-      });
-  
-      if (response.status === 201) {
-        try {
-          console.log(username);
-          console.log(email);
+      }, { withCredentials: true });
 
-          const set_cookies = await axios.post('http://localhost:5000/set_cookies', {
-            username,
-            email 
-          });
-          setMessage("Cookies set successfully"); 
-        } catch (error) {
-          console.error(error);
-          setMessage("Failed to set cookies");
+      try {
+        const setCookiesResponse = await axios.post('http://localhost:5000/set_cookies', {
+          username,
+          email
+        }, { withCredentials: true });
+
+        if (setCookiesResponse.status === 200) {
+          setMessage("REGISTERED!");
         }
+      } catch (error) {
+        console.error("Error setting cookies:", error);
       }
+
     } catch (error) {
       setMessage(error.response.data.error || "Failed to register");
     }
-  };
+};
   
 
   return (
