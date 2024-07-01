@@ -10,9 +10,10 @@ class Session(Base):
     campaign_id = Column(Integer, ForeignKey('campaign.id')) 
     campaign = relationship("Campaign", backref="sessions")
 
-    def __init__(self, date, description=None):
+    def __init__(self, date, description=None, campaign_id=None):
         self.date = date
         self.description = description
+        self.campaign_id = campaign_id
 
     def __repr__(self):
         return f'<Session(date={self.date}, description={self.description})>'

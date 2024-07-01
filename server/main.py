@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
@@ -85,19 +85,23 @@ def add_session():
     if not data:
         return jsonify({'error': 'No data provided'}), 400
 
-    date = data.get('date')
+    date_str = data.get('date')
     description = data.get('description')
     campaign_id = data.get('campaign_id')
 
-    if not date or not campaign_id:
+    if not date_str or not campaign_id:
         return jsonify({'error': 'Missing date or campaign_id'}), 400
+
+    try:
+        date = datetime.strptime(date_str, '%Y-%m-%d').date()
+    except ValueError:
+        return jsonify({'error': 'Invalid date format'}), 400
 
     new_session = Session(date=date, description=description, campaign_id=campaign_id)
     db_session.add(new_session)
     db_session.commit()
 
     return jsonify({'message': 'Session added successfully'}), 201
-
 @app.route('/', methods=['GET'])
 def get_campaigns():
     campaigns = Campaign.query.all()
@@ -140,6 +144,28 @@ def get_user():
         'email': user.email,
         'username': user.username
     }), 200
+
+@app.route('/get_campaigns_user', methods=['GET'])
+def get_campaigns_user():
+    dm_id = request.args.get('dm_id')
+
+    if not dm_id:
+        return jsonify({'error': 'No id provided'}), 400
+
+    campaigns = Campaign.query.filter_by(dm_id=dm_id).all()
+
+    if not campaigns:
+        return jsonify({'error': 'No campaigns found'}), 404
+
+    campaigns_list = [{
+        'id': campaign.id,
+        'name': campaign.name,
+        'description': campaign.description,
+        'hex_color': campaign.hex_color
+    } for campaign in campaigns]
+
+    return jsonify(campaigns_list), 200
+
 if __name__ == '__main__':
     from database import init_db
     init_db()

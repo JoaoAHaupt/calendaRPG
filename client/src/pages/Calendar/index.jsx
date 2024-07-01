@@ -4,27 +4,11 @@ import axios from 'axios';
 
 function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [campaigns, setCampaigns] = useState([]);
   const [sessions, setSessions] = useState([]);
   const userId = 1
 
- /*useEffect(() => {
-    axios.get('http://localhost:5000/hello')
-      .then(response => {
-        const data = response.data;
 
-        const userCampaigns = data.userCampaings.filter(uc => uc.idUser === userId);
-        const userCampaignIds = userCampaigns.map(uc => uc.idCampaing);
-        const userEvents = data.campaigns
-          .filter(campaign => userCampaignIds.includes(campaign.id))
-          .flatMap(campaign => campaign.events);
-        
-        setSessions(userEvents) ;
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);*/
+
 
   const handlePreviousMonth = () => {
     const previousMonth = new Date(currentDate);

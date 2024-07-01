@@ -19,7 +19,8 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("")
-  
+  const [color, setColor] = useState("white");
+
   const handleSubmitLogin = async () => {
     setMessage("");
     try {
@@ -37,10 +38,12 @@ function LoginPage() {
       }, { withCredentials: true });
   
       if (setCookiesResponse.status === 200) {
+        setColor("green");
         setMessage('Login successful!');      
       }
   
     } catch (error) {
+      setColor("red");
       if (error.response) {
         setMessage(`Login failed: email or password incorrect`);
       } else if (error.request) {
@@ -87,7 +90,7 @@ function LoginPage() {
 
             />
           </div>
-          <p>{message}</p>
+          <p  style={{minHeight: "25px",maxHeight: "25px", color:color}}>{message}</p>
           
           <VisibilityButton visibility={visibility} setVisibility={setVisibility}/>          
           <div className='button_div'>

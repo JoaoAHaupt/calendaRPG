@@ -23,9 +23,6 @@ div {
     font-family: "MedievalSharp", cursive;
 }
 
-.register_screen input{
-    margin: 1rem;
-}
 
 .input_div {
     display: flex;

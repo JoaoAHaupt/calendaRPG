@@ -21,6 +21,7 @@ function RegisterPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [color, setColor] = useState("white");
   const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
@@ -35,6 +36,7 @@ function RegisterPage() {
     setMessage("");
   
     if (password !== confirmPassword) {
+      setColor("red");
       setMessage("Passwords aren't the same");
       return;
     }
@@ -47,20 +49,20 @@ function RegisterPage() {
       }, { withCredentials: true });
   
       if (response.status === 201) {
+        setColor("green");
         setMessage("Registration successful!");
       } else {
+        setColor("red");
         setMessage("Unexpected response from server.");
       }
   
     } catch (error) {
+      setColor("red");
       if (error.response) {
-        // Server responded with a status other than 2xx
         setMessage(error.response.data.error || "Failed to register");
       } else if (error.request) {
-        // Request was made but no response was received
         setMessage("Failed to register: No response from server.");
       } else {
-        // Other errors
         setMessage("Failed to register: " + error.message);
       }
     }
@@ -122,7 +124,7 @@ function RegisterPage() {
               maxLength={16}
             />
           </div>
-          <p>{message}</p>
+          <p style={{minHeight: "25px", color:color}}>{message}</p>
           
           <VisibilityButton visibility={visibility} setVisibility={setVisibility}/>          
           <div className='button_div'>
