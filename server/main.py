@@ -31,11 +31,10 @@ def set_cookies():
 def get_cookies():
     username = request.cookies.get('username')
     email = request.cookies.get('email')
+    id = request.cookies.get('id')
 
-    print(f"Username cookie: {username}")
-    print(f"Email cookie: {email}")
 
-    return jsonify({'username': username, 'email': email})
+    return jsonify({'id':id,'username': username, 'email': email})
 
 @app.route('/register', methods=['POST'])
 def add_user():
@@ -63,6 +62,7 @@ def add_campaign():
         return jsonify({'error': 'No data provided'}), 400
 
     name = data.get('name')
+    
     description = data.get('description')
     hex_color = data.get('hex_color')
     dm_id = data.get('dm_id')

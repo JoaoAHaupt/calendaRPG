@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import './styles.css';
 import axios from 'axios';
 
-const CreateCampaing = () => {
+const CreateCampaing = ({dm_id}) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [hexcolor, setHexcolor] = useState('#ffffff'); 
-    const [dm_id, setdm_id] = useState('')
 
     const handleClickCampaign = async () => {
         try {
@@ -23,9 +22,6 @@ const CreateCampaing = () => {
         }
     }
 
-    const handleColorChange = (ev) => {
-        setHexcolor(ev.target.value);
-    }
 
     return (
         <div id='create_campaign_conteiner'>
@@ -37,10 +33,7 @@ const CreateCampaing = () => {
             <input type="text" value={description} onChange={(ev) => setDescription(ev.target.value)} />
             <br />
             <label>Hex Color:</label>
-            <input type="text" value={hexcolor} onChange={handleColorChange} />
-            <br />
-            <label>Hex Color:</label>
-            <input type="text" value={dm_id} onChange={(ev)=>{setdm_id(ev.target.value)}} />
+            <input type="text" value={hexcolor} onChange={(ev) => setHexcolor(ev.target.value)} />
             <br />
             <button onClick={handleClickCampaign}>Create</button>
         </div>
